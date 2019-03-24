@@ -1,8 +1,8 @@
-var Dia_chi_Dich_vu = `http://localhost:1000`;
-var Dia_chi_Media = `http://localhost:1001`;
+// var Dia_chi_Dich_vu = `http://localhost:1000`;
+// var Dia_chi_Media = `http://localhost:1001`;
 
-// var Dia_chi_Dich_vu = `https://ban-game-dvdl.herokuapp.com`;
-// var Dia_chi_Media = `https://ban-game-media.herokuapp.com`;
+var Dia_chi_Dich_vu = `https://ban-game-dvdl.herokuapp.com`;
+var Dia_chi_Media = `https://ban-game-media.herokuapp.com`;
 
 
 function Doc_Danh_sach_Game(The_loai_Game){
