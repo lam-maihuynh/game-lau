@@ -18,6 +18,24 @@ function Doc_Danh_sach_Game(The_loai_Game){
     return Du_lieu;
 }
 
+function Load_San_Pham(Danh_sach_Game, Th_Cha){
+  Danh_sach_Game.forEach(game => {
+    var the_hien = document.createElement(`div`);
+    Th_Cha.appendChild(the_hien);
+    var Chuoi_HTML = ` <div class="card ml-5" style="width: 18rem;float:left">
+                <img class="card-img-top" src="${Dia_chi_Media}/${game.Ma_so}.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">${game.Ten}</h5>
+                  <p class="card-text">Mã game: ${game.Ma_so}</p>
+                  <p class="card-text">Nhà sản xuất: ${game.Nha_San_xuat}</p>
+                  <p class="card-text">Giá: ${game.Don_gia_ban}</p>
+                  <a href="#" class="btn btn-primary">Mua</a>
+                </div>
+              </div>`;
+    the_hien.innerHTML=Chuoi_HTML;
+  });
+}
+
 //tooltip
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
