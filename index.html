@@ -41,6 +41,7 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
+                  <a class="btn-lg btn-danger mr-4" id="Th_Quan_tri">Quản trị</a>
                     <a href="#" class="btn btn-success btn-lg">
                         <span class="glyphicon glyphicon-shopping-cart"></span><i class="fas fa-shopping-basket"></i> Vỏ hàng
                       </a>
@@ -54,7 +55,7 @@
             <div class="search-bar">
               <h1 class="text-center">GAME LẬU.COM</h1>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Nhap tu khoa can tim">
+                    <input type="text" class="form-control" placeholder="Nhập từ khóa cần tìm kiếm">
                     <div class="input-group-append">
                       <button class="btn btn-secondary" type="button">
                           <i class="fa fa-search"></i>
@@ -77,12 +78,6 @@
               <div class="col-md-3" style="margin: top;">
                   <div class="row">
                       <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Nhap tu khoa can tim">
-                          <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                          </div>
                         </div>
                   </div>
 
@@ -186,13 +181,24 @@
   <script>
         var Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
         var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu
+        Danh_sach_Game_Phieu_luu.forEach((game, index) => {
+          if(typeof game == "string")
+          Danh_sach_Game_Phieu_luu[index] = JSON.parse(Danh_sach_Game_Phieu_luu[index]);
+        });
+        
             Du_lieu = Doc_Danh_sach_Game(`Hanh_dong`);
         var Danh_sach_Game_Hanh_dong = Du_lieu.Danh_sach_Game_Hanh_dong
+        Danh_sach_Game_Hanh_dong.forEach((game, index) => {
+          if(typeof game == "string")
+              Danh_sach_Game_Hanh_dong[index] = JSON.parse(Danh_sach_Game_Hanh_dong[index]);
+        });
 
         Load_San_Pham(Danh_sach_Game_Phieu_luu, Th_Cha_Adventure);
         Load_San_Pham(Danh_sach_Game_Hanh_dong, Th_Cha_Action);
 
-
+        Th_Quan_tri.onclick = () =>{
+          window.location = `Giao_dien/MH_Quan_tri.html`
+        }
         
   </script>
  
