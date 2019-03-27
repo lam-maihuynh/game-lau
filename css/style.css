@@ -132,3 +132,38 @@ footer {
   }
   
   
+.body-room {
+    margin-top: 50px;
+}
+
+.room {
+    padding: 20px;
+}
+.body-icon {
+    width: 100%;
+    text-align: center;
+}
+
+.body-icon span {
+    display: inline-block;
+}
+.css-square {
+    width: 100px;
+    height: 100px;
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+    -ms-transition: -ms-transform .8s ease-in-out;
+    transition: transform .8s ease-in-out;
+}
+.css-square:hover {
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+}
+.input-zoom[type=radio] {
+    display: none;
+}
+
+.input-zoom[type=radio]:checked ~ label > img {
+    transform: scale(1.3);
+    cursor: zoom-out;
+} 
