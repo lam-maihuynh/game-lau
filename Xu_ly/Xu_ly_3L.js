@@ -32,6 +32,100 @@ function Load_San_Pham(Game, Th_Cha) {
                   <p class="card-text">Giá: ${Game.Don_gia_ban}</p>
                   <a href="#" class="btn btn-primary">Mua</a>
                   <button class="btn btn-sm btn-danger ml-5">Xem chi tiết</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room">
+                      Đánh giá
+                  </button>
+                  <div class="modal" id="room">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <form method="POST" id="create">
+
+                                  <!-- Modal Header -->
+                                  <div class="modal-header text-center">
+                                      <h4 class="modal-title w-100">Đánh giá</h4>
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  </div>
+                                  <!-- Modal body -->
+                                  <div class="modal-body">
+                                      <div class="body-icon">
+                                          <span style="margin: 20px">
+                                                  <input class="input-zoom" type="radio" id="zoomCheck1" name="checkImage">
+                                                  <label for="zoomCheck1">
+                                                      <img class="css-square" src="images/1.png" name="imageid" width="100px" height="100px" id="1" onclick="sendHinh(this)">
+                                                  </label>
+
+                                              </span>
+                                          <span style="margin: 20px">
+                                                  <input class="input-zoom" type="radio" id="zoomCheck2" name="checkImage">
+                                                  <label for="zoomCheck2">
+                                                      <img class="css-square" src="images/2.png" name="imageid" width="100px" height="100px" id="2" onclick="sendHinh(this)">
+                                                  </label>
+
+                                              </span>
+                                          <span style="margin: 20px">
+                                                  <input class="input-zoom" type="radio" id="zoomCheck3" name="checkImage">
+                                                  <label for="zoomCheck3">
+                                                      <img class="css-square" src="images/3.png" name="imageid" width="100px" height="100px" id="3" onclick="sendHinh(this)">
+                                                  </label>
+
+                                              </span>
+
+                                      </div>
+                                      <textarea name="y_kien" style="height: 100px; width: 100%" placeholder="Ý kiến khác..."></textarea>
+                                  </div>
+
+                                  <!-- Modal footer -->
+                                  <div class="modal-footer">
+                                      <button role="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                                      <input  value="Hoàn tất" class="btn btn-success"
+                                            type="submit" name="submit" id="success" data-dismiss="modal" >
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="modal" id="open-success" >
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                  <div class="body-icon">
+                                              <span style="margin: 20px">
+                                                  <img src="" class="showImgage" id="imageShow" width="100px" height="100px">
+                                                  <p style="font-weight: bold; margin-top: 20px">CẢM ƠN BẠN ĐÃ THỰC HIỆN ĐÁNH GIÁ</p>
+                                                  <div style="position: relative">
+                                                      <img src="images/load.gif" width="50px" height="50px">
+                                                      <div id="countDown" style="position: absolute;top: 25%;width: 100%;"></div>
+                                                  </div>
+                                              </span>
+                                  </div>
+                              </div>
+
+                              <!-- Modal footer -->
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-success" data-dismiss="modal" id="xong">Xong</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="modal" id="cancel-success" >
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                  <div class="body-icon">
+                                              <span style="margin: 20px">
+                                                  <img src="images/load.gif" class="showImgage"  width="100px" height="100px">
+                                                  <p style="font-weight: bold; margin-top: 20px">BẠN CHƯA ĐÁNH GIÁ!!!</p>
+
+                                              </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                 </div>
               </div>`;
     the_hien.innerHTML = Chuoi_HTML;
