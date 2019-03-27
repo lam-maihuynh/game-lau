@@ -51,7 +51,8 @@
     }
     var thongTinTaiKhoan = Login(Tai_khoan);
     if (thongTinTaiKhoan != `{}`) {
-      sessionStorage.setItem(`login`, JSON.parse(thongTinTaiKhoan))
+      var nguoi_dung = JSON.parse(thongTinTaiKhoan)
+      sessionStorage.setItem(`login`, nguoi_dung.ten)
       window.location = `MH_Quan_tri.html`;
     }
   }

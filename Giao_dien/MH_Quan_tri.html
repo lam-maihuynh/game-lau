@@ -29,7 +29,7 @@
 
     #site-navigation {
         background: #fff;
-        height: 60px;
+        height: 65px;
         z-index: 170;
         margin: 0 auto;
         border-bottom: 1px solid #dadada;
@@ -85,8 +85,10 @@
                 </button>
             </div>
             <button type="button" class="btn btn-lg btn-outline-dark ml-5" id="Th_Dang_xuat">
-                    <i class="fa">Đăng xuất</i>
-                </button>
+                <i class="fa">Đăng xuất</i>
+            </button>
+
+            <h1 class="text-nowrap ml-5" id="Th_Ten"></h1>
         </div>
     </div>
 
@@ -166,6 +168,8 @@
         Kq = Xu_ly_HTTP.responseText
         return Kq;
     }
+
+    Th_Ten.innerHTML = `Chào ${sessionStorage.getItem('login')}`;
 </script>
 
 
