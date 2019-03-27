@@ -1,3 +1,7 @@
+<script>
+    if (sessionStorage.getItem('login') == null)
+        window.location = `MH_Dang_nhap.html`;
+</script>
 <!doctype html>
 <html lang="en">
 
@@ -90,7 +94,7 @@
     //Đọc danh sách game phiêu lưu
     var Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
     var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu
-    
+
     //Đọc danh sách game hành động
     Du_lieu = Doc_Danh_sach_Game(`Hanh_dong`);
     var Danh_sach_Game_Hanh_dong = Du_lieu.Danh_sach_Game_Hanh_dong

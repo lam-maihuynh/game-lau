@@ -1,3 +1,7 @@
+<script>
+    if (sessionStorage.getItem('login') == null)
+        window.location = `MH_Dang_nhap.html`;
+</script>
 <!doctype html>
 <html lang="en">
 
@@ -17,6 +21,7 @@
         opacity: 0.5;
     }
 </style>
+
 <body>
     <div class="container-fluid mt-3">
         <h1>Hành động</h1>
@@ -57,25 +62,25 @@
     //         Danh_sach_Game_Hanh_dong[index] = JSON.parse(Danh_sach_Game_Hanh_dong[index]);
     // });
 
-    if(Danh_sach_Game_Hanh_dong.length > 0){
+    if (Danh_sach_Game_Hanh_dong.length > 0) {
         xuatDanhSach(Danh_sach_Game_Hanh_dong, Th_Cha_Action)
     }
-    if(Danh_sach_Game_Phieu_luu.length > 0){
+    if (Danh_sach_Game_Phieu_luu.length > 0) {
         xuatDanhSach(Danh_sach_Game_Phieu_luu, Th_Cha_Adventure)
     }
 
-    function xuatDanhSach(danhSachGame, Th_Cha){
+    function xuatDanhSach(danhSachGame, Th_Cha) {
         Th_Cha.innerHTML = "";
         danhSachGame.forEach(Game => {
             var The_hien = Load_San_Pham(Game, Th_Cha);
             The_hien.onclick = () => {
                 The_hien.classList.toggle("CHON");
                 var game = The_hien.childNodes[0].parentNode.getAttribute("data")
-                if(DSGameXoa.indexOf(JSON.parse(game).Ma_so) != -1 )
+                if (DSGameXoa.indexOf(JSON.parse(game).Ma_so) != -1)
                     DSGameXoa.splice(DSGameXoa.indexOf(JSON.parse(game).Ma_so), 1);
-                else 
+                else
                     DSGameXoa.push(JSON.parse(game).Ma_so);
-            sessionStorage.setItem('gamexoa', DSGameXoa);
+                sessionStorage.setItem('gamexoa', DSGameXoa);
             }
         });
     }
