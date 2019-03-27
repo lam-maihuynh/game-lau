@@ -54,7 +54,8 @@
       var nguoi_dung = JSON.parse(thongTinTaiKhoan)
       sessionStorage.setItem(`login`, nguoi_dung.ten)
       window.location = `MH_Quan_tri.html`;
-    }
+    } else
+      alert("Sai tài khoản hoặc mật khẩu");
   }
 </script>
 
