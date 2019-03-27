@@ -90,18 +90,10 @@
     //Đọc danh sách game phiêu lưu
     var Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
     var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu
-    Danh_sach_Game_Phieu_luu.forEach((game, index) => {
-        if (typeof game == "string")
-            Danh_sach_Game_Phieu_luu[index] = JSON.parse(Danh_sach_Game_Phieu_luu[index]);
-
-    });
+    
     //Đọc danh sách game hành động
     Du_lieu = Doc_Danh_sach_Game(`Hanh_dong`);
     var Danh_sach_Game_Hanh_dong = Du_lieu.Danh_sach_Game_Hanh_dong
-    Danh_sach_Game_Hanh_dong.forEach((game, index) => {
-        if (typeof game == "string")
-            Danh_sach_Game_Hanh_dong[index] = JSON.parse(Danh_sach_Game_Hanh_dong[index]);
-    });
 
     //Load trang sẽ tạo liền mã mới
     Tao_Ma_so_Moi_Theo_loai(Danh_sach_Game_Hanh_dong, Th_The_loai.value);
@@ -121,42 +113,45 @@
         var Nha_San_xuat = Th_NSX.value;
         var Don_gia_Ban = Th_Don_gia_Ban.value;
         var The_loai = Th_The_loai.value == 'ACTION' ? 'Hanh_dong' : "Phieu_luu";
-        var Game = {
-            "Ten": Ten,
-            "Ma_so": Ma_so,
-            "Nha_San_xuat": Nha_San_xuat,
-            "Don_gia_ban": parseInt(Don_gia_Ban),
-            "The_loai": Th_The_loai.value
-        }
-        //Thêm game
-
-        var Game = Ghi_Game_Moi(Game, The_loai);
-        if (Game) {
-            if (The_loai == 'Hanh_dong') {
-                Danh_sach_Game_Hanh_dong.push(Game);
-                console.log(Danh_sach_Game_Hanh_dong);
-            } else if (The_loai == 'Phieu_luu') {
-                Danh_sach_Game_Phieu_luu.push(Game);
+        if (Nha_San_xuat != `` && Ten != `` && Don_gia_Ban != `` && Th_file.value != ``) {
+            var Game = {
+                "Ten": Ten,
+                "Ma_so": Ma_so,
+                "Nha_San_xuat": Nha_San_xuat,
+                "Don_gia_ban": parseInt(Don_gia_Ban),
+                "The_loai": Th_The_loai.value
             }
+            //Thêm game
 
-            var reader = new FileReader();
-            var Chuoi_nhi_phan = ``;
-            var Ten_Hinh = `${Ma_so}.png`;
-            var Kq = ``;
-            reader.onload = (e) => {
-                Chuoi_nhi_phan = e.target.result;
-                var Doi_tuong = {
-                    Ten: Ten_Hinh,
-                    "Chuoi_nhi_phan": Chuoi_nhi_phan
-                };
-                Kq = Ghi_Media(Doi_tuong);
+            var Game = Ghi_Game_Moi(Game, The_loai);
+            if (Game) {
+                if (The_loai == 'Hanh_dong') {
+                    Danh_sach_Game_Hanh_dong.push(Game);
+                    console.log(Danh_sach_Game_Hanh_dong);
+                } else if (The_loai == 'Phieu_luu') {
+                    Danh_sach_Game_Phieu_luu.push(Game);
+                }
 
+                var reader = new FileReader();
+                var Chuoi_nhi_phan = ``;
+                var Ten_Hinh = `${Ma_so}.png`;
+                var Kq = ``;
+                reader.onload = (e) => {
+                    Chuoi_nhi_phan = e.target.result;
+                    var Doi_tuong = {
+                        Ten: Ten_Hinh,
+                        "Chuoi_nhi_phan": Chuoi_nhi_phan
+                    };
+                    Kq = Ghi_Media(Doi_tuong);
+
+                }
+                reader.readAsDataURL(Th_file.files[0])
+                return Kq = "OK";
             }
-            reader.readAsDataURL(Th_file.files[0])
-            return Kq = "OK";
-        }
-
+        } else
+            return Kq = "Err"
     }
+
 
     //Sự kiện khi click đồng ý
     Th_Dong_y.onclick = () => {
@@ -167,13 +162,17 @@
         if (Kq == "OK") {
             Th_Thong_bao.innerHTML = `Thêm thành công game mới !`;
             Th_Thong_bao.className = `btn btn-success btn-block`;
-            Th_The_loai.value=`ACTION`;
+            Th_The_loai.value = `ACTION`;
             Tao_Ma_so_Moi_Theo_loai(Danh_sach_Game_Hanh_dong, Th_The_loai.value);
             Th_Ten.value = ``;
             Th_NSX.value = ``;
             Th_Don_gia_Ban.value = ``;
             Th_file.value = ``;
+        } else {
+            Th_Thong_bao.className = `btn btn-danger btn-block`;
+            Th_Thong_bao.innerHTML = `Vui lòng nhập đầy đủ thông tin`;
         }
+
     }
 
     Th_Bo_qua.onclick = () => {

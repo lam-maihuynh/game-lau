@@ -11,7 +11,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
+<style>
+    .CHON {
+        border: 1px solid blue;
+        opacity: 0.5;
+    }
+</style>
 <body>
     <div class="container-fluid mt-3">
         <h1>Hành động</h1>
@@ -34,23 +39,46 @@
 </body>
 
 <script>
+    var DSGameXoa = [];
+    sessionStorage.removeItem("gamexoa");
+
     var Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
     var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu
-    Danh_sach_Game_Phieu_luu.forEach((game, index) => {
-        if (typeof game == "string")
-            Danh_sach_Game_Phieu_luu[index] = JSON.parse(Danh_sach_Game_Phieu_luu[index]);
+    // Danh_sach_Game_Phieu_luu.forEach((game, index) => {
+    //     if (typeof game == "string")
+    //         Danh_sach_Game_Phieu_luu[index] = JSON.parse(Danh_sach_Game_Phieu_luu[index]);
 
-    });
+    // });
 
     Du_lieu = Doc_Danh_sach_Game(`Hanh_dong`);
     var Danh_sach_Game_Hanh_dong = Du_lieu.Danh_sach_Game_Hanh_dong
-    Danh_sach_Game_Hanh_dong.forEach((game, index) => {
-        if (typeof game == "string")
-            Danh_sach_Game_Hanh_dong[index] = JSON.parse(Danh_sach_Game_Hanh_dong[index]);
-    });
+    // Danh_sach_Game_Hanh_dong.forEach((game, index) => {
+    //     if (typeof game == "string")
+    //         Danh_sach_Game_Hanh_dong[index] = JSON.parse(Danh_sach_Game_Hanh_dong[index]);
+    // });
 
-    Load_San_Pham(Danh_sach_Game_Hanh_dong, Th_Cha_Action)
-    Load_San_Pham(Danh_sach_Game_Phieu_luu, Th_Cha_Adventure)
+    if(Danh_sach_Game_Hanh_dong.length > 0){
+        xuatDanhSach(Danh_sach_Game_Hanh_dong, Th_Cha_Action)
+    }
+    if(Danh_sach_Game_Phieu_luu.length > 0){
+        xuatDanhSach(Danh_sach_Game_Phieu_luu, Th_Cha_Adventure)
+    }
+
+    function xuatDanhSach(danhSachGame, Th_Cha){
+        Th_Cha.innerHTML = "";
+        danhSachGame.forEach(Game => {
+            var The_hien = Load_San_Pham(Game, Th_Cha);
+            The_hien.onclick = () => {
+                The_hien.classList.toggle("CHON");
+                var game = The_hien.childNodes[0].parentNode.getAttribute("data")
+                if(DSGameXoa.indexOf(JSON.parse(game).Ma_so) != -1 )
+                    DSGameXoa.splice(DSGameXoa.indexOf(JSON.parse(game).Ma_so), 1);
+                else 
+                    DSGameXoa.push(JSON.parse(game).Ma_so);
+            sessionStorage.setItem('gamexoa', DSGameXoa);
+            }
+        });
+    }
 </script>
 
 </html>
