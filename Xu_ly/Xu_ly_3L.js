@@ -31,10 +31,11 @@ function Load_San_Pham(Game, Th_Cha) {
                   <p class="card-text">Nhà sản xuất: ${Game.Nha_San_xuat}</p>
                   <p class="card-text">Giá: ${Game.Don_gia_ban}</p>
                   <a href="#" class="btn btn-primary">Mua</a>
-                  <button class="btn btn-sm btn-danger ml-5">Xem chi tiết</button>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room">
                       Đánh giá
                   </button>
+                  <button class="btn btn-sm btn-danger">Chi tiết</button>
+                  
                   <div class="modal" id="room">
                       <div class="modal-dialog">
                           <div class="modal-content">
