@@ -1,3 +1,25 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@lam-maihuynh Sign out
+0
+0 0 ScytheDead/game-lau
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+game-lau/Giao_dien/MH_Quan_tri.html
+ Nguyen ok
+bd91a76 7 hours ago
+180 lines (155 sloc)  6 KB
+    
+<script>
+    if(sessionStorage.getItem('login') == null)
+      window.location = `MH_Dang_nhap.html`;
+</script>
 <!doctype html>
 <html lang="en">
 
@@ -22,9 +44,21 @@
         border: none;
         overflow: hidden;
     }
-
     hr {
         border: 2px double green;
+    }
+    #site-navigation {
+        background: #fff;
+        height: 65px;
+        z-index: 170;
+        margin: 0 auto;
+        border-bottom: 1px solid #dadada;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
     }
 </style>
 
@@ -44,38 +78,43 @@
     <script src="../Xu_ly/Xu_ly_3L.js"></script>
 
 
-    <div class="container-fluid btn">
+    <div class="container-fluid btn" id="site-navigation">
         <div class="row pl-3">
             <button type="button" class="btn btn-lg btn-outline-info" id="Th_Trang_chu">
                 <i class="fa fa-home"></i>
             </button>
 
-            <button type="button" class="btn btn-lg btn-outline-info" id="Th_Them">
+            <button type="button" class="btn btn-lg btn-outline-info ml-3" id="Th_Them">
                 <i class="fa">Thêm</i>
             </button>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-lg btn-outline-warning" id="Th_Sua">
+                <button type="button" class="btn btn-lg btn-outline-warning ml-3" id="Th_Sua">
                     <i class="fa">Sửa</i>
                 </button>
-                <button type="button" class="btn btn-lg btn-outline-warning" id="Th_Xoa">
+                <button type="button" class="btn btn-lg btn-outline-warning ml-1" id="Th_Xoa">
                     <i class="fa">Xóa</i>
                 </button>
             </div>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-lg btn-danger" id="Th_Thong_ke_Nhap_Xuat">
+                <button type="button" class="btn btn-lg btn-danger ml-3" id="Th_Thong_ke_Nhap_Xuat">
                     <i class="fa">Thống kê Nhập Xuất</i>
                 </button>
 
-                <button type="button" class="btn btn-lg btn-danger" id="Th_Thong_ke_Doanh_thu">
+                <button type="button" class="btn btn-lg btn-danger ml-1" id="Th_Thong_ke_Doanh_thu">
                     <i class="fa">Thống kê Doanh thu</i>
                 </button>
             </div>
+            <button type="button" class="btn btn-lg btn-outline-dark ml-5" id="Th_Dang_xuat">
+                <i class="fa">Đăng xuất</i>
+            </button>
+
+            <h1 class="text-nowrap ml-5" id="Th_Ten"></h1>
         </div>
     </div>
 
     <hr>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
         <iframe id="Khung_Chuc_nang" src="MH_Danh_sach_Game.html"></iframe>
     </div>
 </body>
@@ -84,23 +123,24 @@
     // var Danh_sach_Game_Hanh_dong = Du_lieu.Danh_sach_Game_Hanh_dong;
     // Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
     // var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu;
-
+    console.log(sessionStorage.getItem('login'))
     Th_Trang_chu.onclick = () => {
         window.location = `../index.html`
     }
     Th_Them.onclick = () => {
         var trang = "MH_Them_Game.html"
         Hien_thi_Trang(trang)
-
     }
     Th_Sua.onclick = () => {
         var trang = "MH_Sua_Game.html"
         Hien_thi_Trang(trang)
     }
-
     Th_Xoa.onclick = () => {
-        var trang = "MH_Xoa_Game.html"
-        Hien_thi_Trang(trang)
+        if (sessionStorage.getItem(`gamexoa`) != null) {
+            xoaGame(sessionStorage.getItem(`gamexoa`));
+            Hien_thi_Trang("MH_Danh_sach_Game.html")
+        } else
+            alert('Vui lòng chọn game cần xóa');
     }
     Th_Thong_ke_Doanh_thu.onclick = () => {
         var trang = "MH_Thong_ke_Doanh_thu.html"
@@ -110,10 +150,39 @@
         var trang = "MH_Thong_ke_Nhap_Xuat.html"
         Hien_thi_Trang(trang)
     }
-
+    Th_Dang_xuat.onclick = () => {
+        sessionStorage.removeItem("login");
+        window.location = `../index.html`;
+    }
     function Hien_thi_Trang(trang_hien_thi) {
         Khung_Chuc_nang.src = trang_hien_thi
     }
+    function xoaGame(DSGameXoa) {
+        console.log(DSGameXoa)
+        var arrayGameXoa = DSGameXoa.split(',');
+        var DSGameHanhDong = [];
+        var DSGamePhieuLuu = [];
+        arrayGameXoa.forEach(element => {
+            if (element.split('_')[0] == `ACTION`)
+                DSGameHanhDong.push(element);
+            else if (element.split('_')[0] == `ADVENTURE`)
+                DSGamePhieuLuu.push(element);
+        });
+        var Kq = "";
+        Du_lieu = {};
+        Du_lieu.DSGameHanhDong = DSGameHanhDong;
+        Du_lieu.DSGamePhieuLuu = DSGamePhieuLuu;
+        var Xu_ly_HTTP = new XMLHttpRequest();
+        var Tham_so = `Ma_so_Xu_ly=Xoa_Game`;
+        var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
+        Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, true)
+        var chuoi_gui = JSON.stringify(Du_lieu)
+        Xu_ly_HTTP.send(chuoi_gui)
+        Kq = Xu_ly_HTTP.responseText
+        return Kq;
+    }
+    Th_Ten.innerHTML = `Chào ${sessionStorage.getItem('login')}`;
 </script>
+
 
 </html>

@@ -42,7 +42,7 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                   <a class="btn-lg btn-danger mr-4" id="Th_Quan_tri">Quản trị</a>
-                  <a class="btn-lg btn-warning mr-4" href="Giao_dien/login.html" class="btn btn-success btn-lg">Đăng nhập</a>
+                  <a class="btn-lg btn-warning mr-4" id="Th_Login" href="Giao_dien/MH_login.html" class="btn btn-success btn-lg">Đăng nhập</a>
                     <a href="#" class="btn btn-success btn-lg">
                         <span class="glyphicon glyphicon-shopping-cart"></span><i class="fas fa-shopping-basket"></i> Giỏ hàng
                       </a>
@@ -197,9 +197,12 @@
         Load_San_Pham(Danh_sach_Game_Phieu_luu, Th_Cha_Adventure);
         Load_San_Pham(Danh_sach_Game_Hanh_dong, Th_Cha_Action);
 
-        Th_Quan_tri.onclick = () =>{
-          window.location = `Giao_dien/MH_Quan_tri.html`
-        }
+        Th_Quan_tri.onclick = () => {
+    if (sessionStorage.getItem("login"))
+      window.location = `Giao_dien/MH_Quan_tri.html`
+    else
+      window.location = `Giao_dien/MH_Login.html`
+  }
         
   </script>
  

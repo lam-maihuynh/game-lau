@@ -51,6 +51,18 @@ function Ghi_Game_Moi(Game, The_loai_Game){
   return Du_lieu;
 }
 
+function Login(Tai_khoan) {
+  var Xu_ly_HTTP = new XMLHttpRequest();
+  var Tham_so = `Ma_so_Xu_ly=login`;
+  var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
+  Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
+  var Chuoi_gui = JSON.stringify(Tai_khoan);
+  Xu_ly_HTTP.send(Chuoi_gui);
+  var Kq = Xu_ly_HTTP.responseText;
+  if (Kq != "")
+    return Kq;
+}
+
 function Ghi_Media(Hinh) {
     var Xu_ly_HTTP = new XMLHttpRequest();
     var Dia_chi_Xu_ly = `${Dia_chi_Media}`;
