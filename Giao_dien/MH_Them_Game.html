@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Thêm Game - Game lậu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+
+    <div class="container-fluid btn">
+        <div class="float-left">
+            <button type="button" class="btn btn-success" id="Th_Dong_y">
+                Đồng ý
+            </button>
+
+            <button type="button" class="btn btn-danger" id="Th_Bo_qua">
+                Bỏ qua
+            </button>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            THÊM GAME MỚI
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-group">
+            <label for="">Mã game: </label>
+            <input type="text" id="Th_Ma_so" disabled class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="">Tên game: </label>
+            <input type="text" id="Th_Ten" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="">Thể loại: </label>
+            <select name="" id="Th_The_loai" class="btn btn-outline-warning ml-3">
+                <option value="ACTION">Hành động</option>
+                <option value="ADVENTURE">Phiêu lưu</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="">Nhà sản xuất: </label>
+            <input type="text" id="Th_NSX" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="">Giá: </label>
+            <input type="text" id="Th_Don_gia_Ban" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="">Hình: </label>
+            <input type="file" id="Th_file" class="btn btn-outline-danger">
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+<script>
+    //Đọc danh sách game phiêu lưu
+    var Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
+    var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu
+    Danh_sach_Game_Phieu_luu.forEach((game, index) => {
+        if (typeof game == "string")
+            Danh_sach_Game_Phieu_luu[index] = JSON.parse(Danh_sach_Game_Phieu_luu[index]);
+
+    });
+    //Đọc danh sách game hành động
+    Du_lieu = Doc_Danh_sach_Game(`Hanh_dong`);
+    var Danh_sach_Game_Hanh_dong = Du_lieu.Danh_sach_Game_Hanh_dong
+    Danh_sach_Game_Hanh_dong.forEach((game, index) => {
+        if (typeof game == "string")
+            Danh_sach_Game_Hanh_dong[index] = JSON.parse(Danh_sach_Game_Hanh_dong[index]);
+    });
+
+    //Load trang sẽ tạo liền mã mới
+    Tao_Ma_so_Moi_Theo_loai(Danh_sach_Game_Hanh_dong, Th_The_loai.value);
+
+    //Thay đổi thể loại tạo mã mới
+    Th_The_loai.onchange = () => {
+        if (Th_The_loai.value == `ADVENTURE`)
+            Tao_Ma_so_Moi_Theo_loai(Danh_sach_Game_Phieu_luu, Th_The_loai.value);
+        else if (Th_The_loai.value == `ACTION`)
+            Tao_Ma_so_Moi_Theo_loai(Danh_sach_Game_Hanh_dong, Th_The_loai.value);
+    }
+
+    //Xử lý ghi điện thoại
+    function XL_Ghi_Them() {
+        var Ma_so = Th_Ma_so.value;
+        var Ten = Th_Ten.value;
+        var Nha_San_xuat = Th_NSX.value;
+        var Don_gia_Ban = Th_Don_gia_Ban.value;
+        var The_loai = Th_The_loai.value == 'ACTION' ? 'Hanh_dong' : "Phieu_luu";
+        var Game = {
+            "Ten": Ten,
+            "Ma_so": Ma_so,
+            "Nha_San_xuat": Nha_San_xuat,
+            "Don_gia_ban": parseInt(Don_gia_Ban),
+            "The_loai": Th_The_loai.value
+        }
+        //Thêm game
+
+        var Game = Ghi_Game_Moi(Game, The_loai);
+        if (Game) {
+            if (The_loai == 'Hanh_dong') {
+                Danh_sach_Game_Hanh_dong.push(Game);
+                console.log(Danh_sach_Game_Hanh_dong);
+            } else if (The_loai == 'Phieu_luu') {
+                Danh_sach_Game_Phieu_luu.push(Game);
+            }
+
+            var reader = new FileReader();
+            var Chuoi_nhi_phan = ``;
+            var Ten_Hinh = `${Ma_so}.png`;
+            var Kq = ``;
+            reader.onload = (e) => {
+                Chuoi_nhi_phan = e.target.result;
+                var Doi_tuong = {
+                    Ten: Ten_Hinh,
+                    "Chuoi_nhi_phan": Chuoi_nhi_phan
+                };
+                Kq = Ghi_Media(Doi_tuong);
+
+            }
+            reader.readAsDataURL(Th_file.files[0])
+            return Kq = "OK";
+        }
+
+    }
+
+    //Sự kiện khi click đồng ý
+    Th_Dong_y.onclick = () => {
+        var Kq = XL_Ghi_Them();
+        // console.log(Kq);
+
+        //Nếu thành công
+        if (Kq == "OK") {
+            Th_Thong_bao.innerHTML = `Thêm thành công game mới !`;
+            Th_Thong_bao.className = `btn btn-success btn-block`;
+            Th_The_loai.value=`ACTION`;
+            Tao_Ma_so_Moi_Theo_loai(Danh_sach_Game_Hanh_dong, Th_The_loai.value);
+            Th_Ten.value = ``;
+            Th_NSX.value = ``;
+            Th_Don_gia_Ban.value = ``;
+            Th_file.value = ``;
+        }
+    }
+
+    Th_Bo_qua.onclick = () => {
+        window.location = `MH_Danh_sach_Game.html`;
+    }
+</script>
+
+</html>

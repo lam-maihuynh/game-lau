@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Danh sách Game Phiêu lưu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <!-- Thể loại -->
+    <div class="container mt-3">
+        <div class="row text-center">
+            <div class="col-md-12">
+                    <button type="button" class="btn btn-outline-success" onclick="window.location='MH_Danh_sach_Game_Hanh_dong.html'">Hành động</button>
+                    <button type="button" class="btn btn-outline-danger active" onclick="window.location='MH_Danh_sach_Game_Phieu_luu.html'">Phiêu lưu</button>
+            </div>
+            
+        </div>
+    </div>
+
+
+    </div>
+
+    
+      <div class="container mt-4">
+          <div class="row">
+              <div class="col-md-12">
+                    <h1>Danh sách game Phiêu lưu</h1>
+                <!-- Sản phẩm -->
+                <div id="Th_Cha" class="mt-4">
+
+
+                </div>
+  
+              </div>
+          </div>
+      </div>
+      
+
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+
+    <script>
+        var Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
+        var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu
+        Load_San_Pham(Danh_sach_Game_Phieu_luu);
+
+
+        function Load_San_Pham(Danh_sach_Game){
+            Danh_sach_Game.forEach(game => {
+              var the_hien = document.createElement(`div`);
+              Th_Cha.appendChild(the_hien);
+              var Chuoi_HTML = ` <div class="card ml-5" style="width: 18rem;float:left">
+                          <img class="card-img-top" src="${Dia_chi_Media}/${game.Ma_so}.png" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">${game.Ten}</h5>
+                            <p class="card-text">Mã game: ${game.Ma_so}</p>
+                            <p class="card-text">Nhà sản xuất: ${game.Nha_San_xuat}</p>
+                            <p class="card-text">Giá: ${game.Don_gia_ban}</p>
+                            <a href="#" class="btn btn-primary">Mua</a>
+                          </div>
+                        </div>`;
+              the_hien.innerHTML=Chuoi_HTML;
+            });
+        }
+        // 
+    </script>
+  </body>
+</html>

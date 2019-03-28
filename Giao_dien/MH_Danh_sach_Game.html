@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+        <h1>Hành động</h1>
+        <div class="row" id="Th_Cha_Action"></div>
+        <h1 class="mt-2">Phiêu lưu</h1>
+        <div class="row" id="Th_Cha_Adventure"></div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+</body>
+
+<script>
+    var Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
+    var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu
+    Danh_sach_Game_Phieu_luu.forEach((game, index) => {
+        if (typeof game == "string")
+            Danh_sach_Game_Phieu_luu[index] = JSON.parse(Danh_sach_Game_Phieu_luu[index]);
+
+    });
+
+    Du_lieu = Doc_Danh_sach_Game(`Hanh_dong`);
+    var Danh_sach_Game_Hanh_dong = Du_lieu.Danh_sach_Game_Hanh_dong
+    Danh_sach_Game_Hanh_dong.forEach((game, index) => {
+        if (typeof game == "string")
+            Danh_sach_Game_Hanh_dong[index] = JSON.parse(Danh_sach_Game_Hanh_dong[index]);
+    });
+
+    Load_San_Pham(Danh_sach_Game_Hanh_dong, Th_Cha_Action)
+    Load_San_Pham(Danh_sach_Game_Phieu_luu, Th_Cha_Adventure)
+</script>
+
+</html>
