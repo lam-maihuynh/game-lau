@@ -40,12 +40,16 @@
                         <a class="nav-link" href="#">FAQs</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                  <a class="btn-lg btn-danger mr-4" id="Th_Quan_tri">Quản trị</a>
-                  <a class="btn-lg btn-warning mr-4" href="Giao_dien/login.html" class="btn btn-success btn-lg">Đăng nhập</a>
+                <form class="form form-inline my-2 my-lg-0">
+                  
+                  <!-- <button type="button" class="btn btn-lg btn-warning" id="Th_Login"><i class="fa">Đăng nhập</i></button> -->
+                  <a href="#" id="Th_Login">
+                    <i class="btn">Đăng nhập</i> 
+                  </a>
                     <a href="#" class="btn btn-success btn-lg">
                         <span class="glyphicon glyphicon-shopping-cart"></span><i class="fas fa-shopping-basket"></i> Giỏ hàng
                       </a>
+                    <a class="btn btn-lg btn-danger" id="Th_Quan_tri" href="Giao_dien/MH_Quan_tri.html">Quản trị</a>
                 </form>                     
             </div>
         </nav>
@@ -196,10 +200,53 @@
 
         Load_San_Pham(Danh_sach_Game_Phieu_luu, Th_Cha_Adventure);
         Load_San_Pham(Danh_sach_Game_Hanh_dong, Th_Cha_Action);
-
-        Th_Quan_tri.onclick = () =>{
-          window.location = `Giao_dien/MH_Quan_tri.html`
+        
+        //Script Đăng nhập - đăng xuất
+        if (sessionStorage.getItem("login")){
+            var Chuoi_HTML = ` 
+            <a><b>Chao, </b>${sessionStorage.getItem('login')}</a>
+            <a class="btn btn-lg btn-outline-dark ml-5" id="Th_Dang_xuat">
+                <i class="fa">Đăng xuất</i>
+            </a>`;
+            Th_Login.innerHTML = Chuoi_HTML;
+            
+          }
+        else
+        {
+          var Chuoi_HTML = ` 
+            <a class="btn btn-lg btn-warning" id="Th_Quan_tri" href="Giao_dien/MH_Login.html">Đăng nhập</a>`;
+            Th_Login.innerHTML = Chuoi_HTML;
         }
+        
+
+        Th_Login.onclick = () => {
+          if (sessionStorage.getItem("login")){
+            var Chuoi_HTML = ` 
+            <a><b>Chao, </b>${sessionStorage.getItem('login')}</a>
+            <a class="btn btn-lg btn-outline-dark ml-5" id="Th_Dang_xuat">
+                <i class="fa">Đăng xuất</i>
+            </a>`;
+            Th_Login.innerHTML = Chuoi_HTML;
+          }
+    else
+    var Chuoi_HTML = ` 
+            <a class="btn btn-lg btn-warning" id="Th_Quan_tri" href="Giao_dien/MH_Login.html">Đăng nhập</a>`;
+            Th_Login.innerHTML = Chuoi_HTML;
+        }
+
+        Th_Dang_xuat.onclick = () => {
+        sessionStorage.removeItem("login");
+        window.location = `index.html`;
+    }
+    
+    //End of Script Đăng nhập - đăng xuất
+    
+        Th_Quan_tri.onclick = () => {
+    if (sessionStorage.getItem("login"))
+      window.location = `index.html`
+    else
+      window.location = `Giao_dien/MH_Login.html`
+  }
         
   </script>
  
