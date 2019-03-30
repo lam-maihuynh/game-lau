@@ -10,19 +10,7 @@ nav {
   background-color: #141414;
 }
 
-  .bg {
-    /* The image used */
-    background-image: url(../Hinh/bg.jpg);
-  
-    /* Full height */
-    height: 100%; 
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
+
 
 .search-bar {
     width: 30%;

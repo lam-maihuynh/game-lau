@@ -1,6 +1,6 @@
 <script>
-    if(sessionStorage.getItem('login') == null)
-      window.location = `MH_Dang_nhap.html`;
+    if (sessionStorage.getItem('login') == null)
+        window.location = `MH_Dang_nhap.html`;
 </script>
 <!doctype html>
 <html lang="en">
@@ -68,17 +68,18 @@
                 <i class="fa fa-home"></i>
             </button>
 
+            <button type="button" class="btn btn-lg btn-outline-primary ml-3" id="Th_DS">
+                <i class="fa">Danh sách</i>
+            </button>
+
             <button type="button" class="btn btn-lg btn-outline-info ml-3" id="Th_Them">
                 <i class="fa">Thêm</i>
             </button>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-lg btn-outline-warning ml-3" id="Th_Sua">
-                    <i class="fa">Sửa</i>
-                </button>
-                <button type="button" class="btn btn-lg btn-outline-warning ml-1" id="Th_Xoa">
-                    <i class="fa">Xóa</i>
-                </button>
-            </div>
+
+            <button type="button" class="btn btn-lg btn-outline-warning ml-3" id="Th_Xoa">
+                <i class="fa">Xóa</i>
+            </button>
+
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-lg btn-danger ml-3" id="Th_Thong_ke_Nhap_Xuat">
                     <i class="fa">Thống kê Nhập Xuất</i>
@@ -98,37 +99,33 @@
 
     <hr>
 
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-5 btn">
         <iframe id="Khung_Chuc_nang" src="MH_Danh_sach_Game.html"></iframe>
     </div>
 </body>
 <script>
-    // var Du_lieu = Doc_Danh_sach_Game(`Hanh_dong`);
-    // var Danh_sach_Game_Hanh_dong = Du_lieu.Danh_sach_Game_Hanh_dong;
-    // Du_lieu = Doc_Danh_sach_Game(`Phieu_luu`);
-    // var Danh_sach_Game_Phieu_luu = Du_lieu.Danh_sach_Game_Phieu_luu;
     console.log(sessionStorage.getItem('login'))
 
     Th_Trang_chu.onclick = () => {
         window.location = `../index.html`
     }
+
+    Th_DS.onclick = () => {
+        window.location = `MH_Quan_tri.html`
+    }
     Th_Them.onclick = () => {
-        var trang = "MH_Them_Game.html"
+        var trang = "MH_Them_Or_Update_Game.html"
+        sessionStorage.removeItem('magamesua')
         Hien_thi_Trang(trang)
 
     }
-    Th_Sua.onclick = () => {
-        var trang = "MH_Sua_Game.html"
-        Hien_thi_Trang(trang)
-    }
-
     Th_Xoa.onclick = () => {
         if (sessionStorage.getItem(`gamexoa`) != null) {
             xoaGame(sessionStorage.getItem(`gamexoa`));
             Hien_thi_Trang("MH_Danh_sach_Game.html")
         } else
             alert('Vui lòng chọn game cần xóa');
-
+        Hien_thi_Trang("MH_Danh_sach_Game.html")
     }
     Th_Thong_ke_Doanh_thu.onclick = () => {
         var trang = "MH_Thong_ke_Doanh_thu.html"

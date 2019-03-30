@@ -8,12 +8,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="./css/style.css" rel="stylesheet">
 
 </head>
@@ -55,7 +51,7 @@
   </nav>
   <!--End nav bar-->
 
- 
+
 
 
   <div class="container-fluid">
@@ -65,65 +61,6 @@
         <div class="row" id="Th_Cha_Action"></div>
         <h2>Phiêu lưu</h2>
         <div class="row" id="Th_Cha_Adventure"></div>
-      </div>
-      <div class="col-md-3" style="margin: top;">
-        <div class="row">
-          <div class="input-group">
-          </div>
-        </div>
-
-        <div class="row">
-          <!-- <h3>GAME HOT</h3> -->
-          <div class="w3-content w3-display-container">
-
-            <div class="w3-display-container mySlides">
-              <img src="Hinh/bg.jpg" style="width:100%">
-              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                GTA V
-              </div>
-            </div>
-            <div class="w3-display-container mySlides">
-              <img src="Hinh/bg.jpg" style="width:100%">
-              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                PUBG
-              </div>
-            </div>
-            <div class="w3-display-container mySlides">
-              <img src="Hinh/bg.jpg" style="width:100%">
-              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                ARK: Survival Evoled
-              </div>
-            </div>
-            <!-- <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button> -->
-          </div>
-        </div>
-        <div class="row">
-          <!-- <h3>GAME MOI</h3> -->
-          <div class="w3-content w3-display-container">
-
-            <div class="w3-display-container mySlides2">
-              <img src="Hinh/bg.jpg" style="width:100%">
-              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                GTA V
-              </div>
-            </div>
-            <div class="w3-display-container mySlides2">
-              <img src="Hinh/bg.jpg" style="width:100%">
-              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                PUBG
-              </div>
-            </div>
-            <div class="w3-display-container mySlides2">
-              <img src="Hinh/bg.jpg" style="width:100%">
-              <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
-                ARK: Survival Evoled
-              </div>
-            </div>
-            <!-- <button class="w3-button w3-black w3-display-left" onclick="plusDivs2(-1)">&#10094;</button>
-            <button class="w3-button w3-black w3-display-right" onclick="plusDivs2(1)">&#10095;</button> -->
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -177,6 +114,102 @@
   </script>
   <script src="Xu_ly/Xu_ly_3L.js"></script>
 
+  <!-- Xử lý modal -->
+  <div class="modal" id="room">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="POST" id="create">
+
+          <!-- Modal Header -->
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100">Đánh giá</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="body-icon">
+              <span style="margin: 20px">
+                <input class="input-zoom" type="radio" id="zoomCheck1" name="checkImage">
+                <label for="zoomCheck1">
+                  <img class="css-square" src="images/1.png" name="imageid" width="100px" height="100px" id="1"
+                    onclick="sendHinh(this)">
+                </label>
+
+              </span>
+              <span style="margin: 20px">
+                <input class="input-zoom" type="radio" id="zoomCheck2" name="checkImage">
+                <label for="zoomCheck2">
+                  <img class="css-square" src="images/2.png" name="imageid" width="100px" height="100px" id="2"
+                    onclick="sendHinh(this)">
+                </label>
+
+              </span>
+              <span style="margin: 20px">
+                <input class="input-zoom" type="radio" id="zoomCheck3" name="checkImage">
+                <label for="zoomCheck3">
+                  <img class="css-square" src="images/3.png" name="imageid" width="100px" height="100px" id="3"
+                    onclick="sendHinh(this)">
+                </label>
+
+              </span>
+
+            </div>
+            <textarea name="y_kien" style="height: 100px; width: 100%" placeholder="Ý kiến khác..."></textarea>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button role="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+            <input value="Hoàn tất" class="btn btn-success" type="submit" name="submit" id="success"
+              data-dismiss="modal">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="open-success">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="body-icon">
+            <span style="margin: 20px">
+              <img src="" class="showImgage" id="imageShow" width="100px" height="100px">
+              <p style="font-weight: bold; margin-top: 20px">CẢM ƠN BẠN ĐÃ THỰC HIỆN ĐÁNH GIÁ</p>
+              <div style="position: relative">
+                <img src="images/load.gif" width="50px" height="50px">
+                <div id="countDown" style="position: absolute;top: 25%;width: 100%;"></div>
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="xong">Xong</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="cancel-success">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="body-icon">
+            <span style="margin: 20px">
+              <img src="images/load.gif" class="showImgage" width="100px" height="100px">
+              <p style="font-weight: bold; margin-top: 20px">BẠN CHƯA ĐÁNH GIÁ!!!</p>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 <script>
@@ -206,4 +239,5 @@
   }
 </script>
 <script src="js/custom.js"></script>
+
 </html>
